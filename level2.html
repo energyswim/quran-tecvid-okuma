@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="theme-color" content="#1d3461"><title>Level 2: Hum Through Your Nose</title>
+<style>
+  * { box-sizing:border-box; }
+  body { font-family:'Helvetica Neue',Arial,sans-serif; margin:0; padding:0 0 70px; background:#f4f6fb; color:#1b2a4a; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 14px; }
+  header { background:linear-gradient(160deg,#1d3461,#26467f); color:#fff; padding:20px 16px 16px; }
+  .hwrap { max-width:900px; margin:0 auto; }
+  .lvtag { font-size:12px; font-weight:800; letter-spacing:1.5px; opacity:.85; }
+  header h1 { margin:3px 0 6px; font-size:22px; }
+  .focus { background:rgba(255,255,255,.13); border-radius:10px; padding:9px 12px; font-size:13px; line-height:1.45; }
+  .focus b { color:#ffe08a; }
+  .back { color:#cfe0ff; text-decoration:none; font-size:12.5px; }
+  .bar { position:sticky; top:0; z-index:9; background:#f4f6fb; display:flex; gap:7px; flex-wrap:wrap; align-items:center; padding:10px 0 8px; border-bottom:1px solid #e2e8f0; }
+  .tog { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#46506a; background:#fff; border:1px solid #d4dcec; padding:6px 10px; border-radius:18px; cursor:pointer; user-select:none; }
+  .tog input { display:none; } .tog .dot { width:13px; height:13px; border-radius:50%; border:2px solid #c0cae0; }
+  .tog.on { color:#1d3461; border-color:#1d3461; background:#eef3ff; }
+  .tog.on .dot { background:#1d3461; border-color:#1d3461; box-shadow:inset 0 0 0 2px #fff; }
+  .prog { font-size:12px; color:#46506a; font-weight:700; margin-left:auto; }
+  .ghost { font:inherit; font-size:12px; font-weight:600; background:#e7ecf7; color:#1d3461; border:0; padding:6px 10px; border-radius:18px; cursor:pointer; }
+  .watch { background:#fff3cd; border:1px solid #f0d886; color:#6b5512; border-radius:10px; padding:10px 13px; font-size:12.5px; line-height:1.5; margin:12px 0; }
+  .watch b { color:#8a5a00; }
+  details.legend { margin:12px 0; background:#fff; border:1px solid #dce2ee; border-radius:10px; padding:2px 14px 8px; }
+  details.legend summary { cursor:pointer; font-weight:700; color:#1d3461; padding:9px 0; list-style:none; }
+  details.legend summary::-webkit-details-marker { display:none; }
+  details.legend summary::before { content:"▸ "; color:#0f8a7e; } details.legend[open] summary::before { content:"▾ "; }
+  .lrow { display:flex; gap:10px; padding:7px 2px; border-top:1px solid #eef1f7; font-size:12.5px; }
+  .sw { width:15px; height:15px; border-radius:4px; flex:0 0 15px; margin-top:2px; } .lname { font-weight:700; } .ldef { color:#5a6477; }
+  .card { background:#fff; border:1px solid #e4e9f3; border-radius:14px; padding:13px 14px; margin:12px 0; }
+  .cardh { margin:0 0 10px; font-size:17px; color:#1d3461; }
+  .cnt { font-size:11.5px; font-weight:600; color:#8b95ab; }
+  .ayah { display:flex; gap:9px; align-items:flex-start; border-top:1px solid #f0f3f9; padding:11px 0 4px; }
+  .ayah:first-of-type { border-top:0; }
+  .ayah.read { background:#f3fbf5; } .ayah.solved { background:#eefcf3; }
+  .chk input { width:19px; height:19px; cursor:pointer; accent-color:#16a34a; margin-top:5px; }
+  .body { flex:1; min-width:0; }
+  .topline { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .anum { display:inline-block; height:22px; line-height:22px; background:#1d3461; color:#fff; font-size:12px; font-weight:700; border-radius:6px; padding:0 8px; }
+  .ezbadge { display:none; font-size:11.5px; font-weight:700; color:#0f8a7e; } body.ez-on .ezbadge { display:inline; }
+  .words { display:flex; flex-wrap:wrap; direction:rtl; gap:6px 5px; }
+  .w { display:flex; flex-direction:column; align-items:center; background:#f7f9fd; border:1px solid #eef1f8; border-radius:9px; padding:6px 9px 5px; }
+  .wa { font-family:'Geeza Pro',serif; font-size:28px; line-height:1.5; color:#11203c; }
+  body.spaced .wa { letter-spacing:3px; } .wa-p { display:none; }
+  body.colors-off .wa-c { display:none; } body.colors-off .wa-p { display:inline; }
+  .wl { direction:ltr; font-size:12.5px; font-style:italic; color:#0f8a7e; margin-top:3px; white-space:nowrap; }
+  body.latin-off .wl { display:none; } body.ez-on .wl { display:none; }
+  body.ez-on .w { cursor:pointer; } .w.sel { background:#fff3cd; border-color:#e6c200; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
+  .w.bad { animation:shake .25s; }
+  .prayer-tr { font-size:16px; line-height:1.6; color:#11203c; font-weight:600; }
+  body.latin-off .prayer-tr { opacity:.35; }
+  .prayer-mean { font-size:13px; color:#5a6477; font-style:italic; margin-top:7px; }
+</style></head><body>
+<header><div class="hwrap">
+  <a class="back" href="levels.html">‹ All levels</a>
+  <div class="lvtag">LEVEL 2 OF 5</div>
+  <h1>Hum Through Your Nose</h1>
+  <div class="focus"><b>Focus:</b> Ghunne (the 2-count nasal hum), including the cross-word tanwin merge idgham bi-ghunnah, which belongs to the ghunne family.. </div>
+</div></header>
+<div class="wrap">
+  <div class="bar">
+    <label class="tog on" data-k="colors"><input type="checkbox" checked><span class="dot"></span>🎨 Tajweed colors</label>
+    <label class="tog on" data-k="latin"><input type="checkbox" checked><span class="dot"></span>🔤 Latin reading</label>
+    <label class="tog" data-k="spaced"><input type="checkbox"><span class="dot"></span>🔡 Letter spacing</label>
+    <label class="tog" data-k="ez"><input type="checkbox"><span class="dot"></span>🧩 Memorize</label>
+    <button class="ghost" id="resetBtn">Reset</button>
+    <span class="prog" id="prog"></span>
+  </div>
+  <div class="watch">⚠️ <b>Watch out:</b> Kids rush the hum (under 2 counts) or sound a clear N on the tanwin instead of merging and humming it into the next word, as in hameedun-majeed and Muhammadin-wa. An-Nas also has a single ihfa, only flag it on the page here, do not drill it; ghunne stays the one rule you practice this level.</div>
+  <section class="card"><h3 class="cardh">📖 An-Nas <span class="cnt">surah 114 · 6 ayahs</span></h3><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:1"></label><div class="body"><div class="topline"><span class="anum">1</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">قُلْ</span><span class="wa-p">قُلْ</span></div><div class="wl">Qul</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c">أَعُوذُ</span><span class="wa-p">أَعُوذُ</span></div><div class="wl">aʿūdhu</div></div><div class="w" data-pos="2"><div class="wa"><span class="wa-c">بِرَبِّ</span><span class="wa-p">بِرَبِّ</span></div><div class="wl">birabbi</div></div><div class="w" data-pos="3"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span><span style="color:#94a3b8">ل</span><span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">ٱلنَّاسِ</span></div><div class="wl">l-nāsi</div></div></div></div></div><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:2"></label><div class="body"><div class="topline"><span class="anum">2</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">مَلِكِ</span><span class="wa-p">مَلِكِ</span></div><div class="wl">Maliki</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span><span style="color:#94a3b8">ل</span><span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">ٱلنَّاسِ</span></div><div class="wl">l-nāsi</div></div></div></div></div><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:3"></label><div class="body"><div class="topline"><span class="anum">3</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">إِلَ<span style="color:#dc2626">ـ</span><span style="color:#dc2626">ٰ</span>هِ</span><span class="wa-p">إِلَـٰهِ</span></div><div class="wl">Ilāhi</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span><span style="color:#94a3b8">ل</span><span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">ٱلنَّاسِ</span></div><div class="wl">l-nāsi</div></div></div></div></div><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:4"></label><div class="body"><div class="topline"><span class="anum">4</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">مِ<span style="color:#9333ea">ن</span></span><span class="wa-p">مِن</span></div><div class="wl">Min</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c"><span style="color:#9333ea">ش</span>َرِّ</span><span class="wa-p">شَرِّ</span></div><div class="wl">sharri</div></div><div class="w" data-pos="2"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span>لْوَسْوَاسِ</span><span class="wa-p">ٱلْوَسْوَاسِ</span></div><div class="wl">l-waswāsi</div></div><div class="w" data-pos="3"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span>لْخَ<span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">ٱلْخَنَّاسِ</span></div><div class="wl">l-khanāsi</div></div></div></div></div><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:5"></label><div class="body"><div class="topline"><span class="anum">5</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">ٱلَّذِى</span><span class="wa-p">ٱلَّذِى</span></div><div class="wl">Alladhī</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c">يُوَسْوِسُ</span><span class="wa-p">يُوَسْوِسُ</span></div><div class="wl">yuwaswisu</div></div><div class="w" data-pos="2"><div class="wa"><span class="wa-c">فِى</span><span class="wa-p">فِى</span></div><div class="wl">fī</div></div><div class="w" data-pos="3"><div class="wa"><span class="wa-c">صُدُورِ</span><span class="wa-p">صُدُورِ</span></div><div class="wl">ṣudūri</div></div><div class="w" data-pos="4"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span><span style="color:#94a3b8">ل</span><span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">ٱلنَّاسِ</span></div><div class="wl">l-nāsi</div></div></div></div></div><div class="ayah"><label class="chk"><input type="checkbox" data-a="114:6"></label><div class="body"><div class="topline"><span class="anum">6</span><span class="ezbadge">🧩 reorder</span></div><div class="words"><div class="w" data-pos="0"><div class="wa"><span class="wa-c">مِنَ</span><span class="wa-p">مِنَ</span></div><div class="wl">Mina</div></div><div class="w" data-pos="1"><div class="wa"><span class="wa-c"><span style="color:#94a3b8">ٱ</span>لْجِ<span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span>َةِ</span><span class="wa-p">ٱلْجِنَّةِ</span></div><div class="wl">l-jinati</div></div><div class="w" data-pos="2"><div class="wa"><span class="wa-c">وَ<span style="color:#94a3b8">ٱ</span><span style="color:#94a3b8">ل</span><span style="color:#16a34a">ن</span><span style="color:#16a34a">ّ</span><span style="color:#dc2626">َ</span><span style="color:#dc2626">ا</span>سِ</span><span class="wa-p">وَٱلنَّاسِ</span></div><div class="wl">wal-nāsi</div></div></div></div></div></section><section class="card"><h3 class="cardh">🤲 Rabbana Atina <span class="cnt">prayer</span></h3><div class="ayah"><label class="chk"><input type="checkbox" data-a="rabbena"></label><div class="body"><div class="prayer-tr">Rabbanaa aatinaa fi-d-dunyaa hasanatan wa fi-l-aakhirati hasanatan wa qinaa &#x27;adhaaba-n-naar.</div><div class="prayer-mean">Our Lord, give us good in this world and good in the hereafter, and protect us from the punishment of the Fire. (Qur&#x27;an 2:201)</div></div></div></section><section class="card"><h3 class="cardh">🤲 Allahumma Salli <span class="cnt">prayer</span></h3><div class="ayah"><label class="chk"><input type="checkbox" data-a="salli"></label><div class="body"><div class="prayer-tr">Allaahumma salli &#x27;alaa Muhammadin wa &#x27;alaa aali Muhammad, kamaa sallayta &#x27;alaa Ibraaheema wa &#x27;alaa aali Ibraaheem, innaka hameedun majeed.</div><div class="prayer-mean">O Allah, send blessings on Muhammad and his family, as You sent blessings on Ibrahim and his family. You are Praiseworthy, Most Glorious.</div></div></div></section><section class="card"><h3 class="cardh">🤲 Allahumma Barik <span class="cnt">prayer</span></h3><div class="ayah"><label class="chk"><input type="checkbox" data-a="barik"></label><div class="body"><div class="prayer-tr">Allaahumma baarik &#x27;alaa Muhammadin wa &#x27;alaa aali Muhammad, kamaa baarakta &#x27;alaa Ibraaheema wa &#x27;alaa aali Ibraaheem, innaka hameedun majeed.</div><div class="prayer-mean">O Allah, bless Muhammad and his family, as You blessed Ibrahim and his family. You are Praiseworthy, Most Glorious.</div></div></div></section>
+  <details class="legend"><summary>Tajweed color key</summary><div class="lrow"><span class="sw" style="background:#16a34a"></span><div><span class="lname" style="color:#16a34a">👃 Ghunnah</span><div class="ldef">Nasal hum about 2 counts.</div></div></div><div class="lrow"><span class="sw" style="background:#9333ea"></span><div><span class="lname" style="color:#9333ea">🫥 Ikhfa</span><div class="ldef">Hide the silent n/tanwin into a soft nasal hum.</div></div></div><div class="lrow"><span class="sw" style="background:#dc2626"></span><div><span class="lname" style="color:#dc2626">↔️ Madd</span><div class="ldef">Stretch the long vowel, 2 to 6 counts.</div></div></div><div class="lrow"><span class="sw" style="background:#94a3b8"></span><div><span class="lname" style="color:#94a3b8">🌑 Silent / sun-lam</span><div class="ldef">Written but not pronounced, or glided.</div></div></div></details>
+</div>
+<script>const PAGE_SID="level2";
+  const SID=PAGE_SID;
+  const done=JSON.parse(localStorage.getItem("read_"+SID)||"{}");
+  const boxes=[...document.querySelectorAll('.chk input')];
+  function refresh(){let n=0;boxes.forEach(b=>{const a=b.dataset.a;b.checked=!!done[a];b.closest('.ayah').classList.toggle('read',!!done[a]);if(done[a])n++;});
+    var p=document.getElementById('prog'); if(p) p.textContent=n+" / "+boxes.length+" read";}
+  boxes.forEach(b=>b.addEventListener('change',()=>{const a=b.dataset.a;if(b.checked)done[a]=1;else delete done[a];localStorage.setItem("read_"+SID,JSON.stringify(done));refresh();}));
+  var rb=document.getElementById('resetBtn'); if(rb) rb.addEventListener('click',()=>{if(!confirm('Clear read marks?'))return;for(const k in done)delete done[k];localStorage.setItem("read_"+SID,"{}");refresh();});
+  document.querySelector('.bar').addEventListener('click',e=>{const lab=e.target.closest('.tog');if(!lab)return;
+    setTimeout(()=>{const on=lab.querySelector('input').checked;lab.classList.toggle('on',on);
+      const k=lab.dataset.k; const cls=(k==='colors'||k==='latin')?k+'-off':k;
+      document.body.classList.toggle(cls,(k==='colors'||k==='latin')?!on:on); if(k==='ez')setEz(on);},0);});
+  let sel=null;
+  function shuffle(c){const ws=[...c.children];for(let i=ws.length-1;i>0;i--){const j=(i*7+3)%(i+1);c.insertBefore(ws[j],ws[i].nextSibling);}}
+  function checkOrder(c){const ws=[...c.children];const ok=ws.every((w,i)=>+w.dataset.pos===i);c.closest('.ayah').classList.toggle('solved',ok);return ok;}
+  function setEz(on){document.querySelectorAll('.words').forEach(c=>{
+    if(on){shuffle(c);c.closest('.ayah').classList.remove('solved');}
+    else{[...c.children].sort((a,b)=>a.dataset.pos-b.dataset.pos).forEach(w=>c.appendChild(w));c.closest('.ayah').classList.remove('solved');}});
+    if(sel){sel.classList.remove('sel');sel=null;}}
+  document.querySelectorAll('.words').forEach(c=>c.addEventListener('click',e=>{
+    if(!document.body.classList.contains('ez-on'))return;const w=e.target.closest('.w');if(!w)return;
+    if(!sel){sel=w;w.classList.add('sel');return;} if(sel===w){w.classList.remove('sel');sel=null;return;}
+    const a=sel,b=w;const ap=document.createComment('');a.parentNode.insertBefore(ap,a);b.parentNode.insertBefore(a,b);ap.parentNode.insertBefore(b,ap);ap.remove();
+    a.classList.remove('sel');sel=null;if(!checkOrder(c)){a.classList.add('bad');setTimeout(()=>a.classList.remove('bad'),260);}}));
+  refresh();
+</script>
+</body></html>
