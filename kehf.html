@@ -198,13 +198,14 @@
     for(const k in done)delete done[k]; localStorage.setItem("read_"+SID,"{}"); refresh();});
   document.querySelector('.bar').addEventListener('click',e=>{const lab=e.target.closest('.tog'); if(!lab)return;
     setTimeout(()=>{const on=lab.querySelector('input').checked; lab.classList.toggle('on',on);
-      document.body.classList.toggle(lab.dataset.k+(lab.dataset.k==='colors'||lab.dataset.k==='latin'?'-off':''),
-        (lab.dataset.k==='colors'||lab.dataset.k==='latin')?!on:on);
-      if(lab.dataset.k==='ez') setEz(on);
+      const k=lab.dataset.k;
+      const cls=k==='ez'?'ez-on':((k==='colors'||k==='latin')?k+'-off':k);
+      document.body.classList.toggle(cls,(k==='colors'||k==='latin')?!on:on);
+      if(k==='ez') setEz(on);
     },0);});
   // memorize: shuffle word tiles per ayah, tap-two-to-swap, check order
   let sel=null;
-  function shuffle(c){const ws=[...c.children]; for(let i=ws.length-1;i>0;i--){const j=(i*7+3)%(i+1); c.insertBefore(ws[j],ws[i].nextSibling);}}
+  function shuffle(c){const ws=[...c.children]; for(let i=ws.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); c.insertBefore(ws[j],ws[i].nextSibling); const t=ws[i]; ws[i]=ws[j]; ws[j]=t;}}
   function checkOrder(c){const ws=[...c.children]; const ok=ws.every((w,i)=>+w.dataset.pos===i);
     c.closest('.ayah').classList.toggle('solved',ok); return ok;}
   function setEz(on){
@@ -217,10 +218,11 @@
   }
   document.querySelectorAll('.words').forEach(c=>c.addEventListener('click',e=>{
     if(!document.body.classList.contains('ez-on'))return;
-    const w=e.target.closest('.w'); if(!w)return;
+    const w=e.target.closest('.w'); if(!w||w.parentNode!==c)return;
     if(!sel){ sel=w; w.classList.add('sel'); return; }
     if(sel===w){ w.classList.remove('sel'); sel=null; return; }
-    const a=sel,b=w; const an=a.nextSibling===b?b:a.nextSibling; // swap a and b in DOM
+    if(sel.parentNode!==w.parentNode){ sel.classList.remove('sel'); sel=w; w.classList.add('sel'); return; }
+    const a=sel,b=w;
     const ap=document.createComment(''); a.parentNode.insertBefore(ap,a); b.parentNode.insertBefore(a,b); ap.parentNode.insertBefore(b,ap); ap.remove();
     a.classList.remove('sel'); sel=null; if(!checkOrder(c)){a.classList.add('bad'); setTimeout(()=>a.classList.remove('bad'),260);}
   }));
