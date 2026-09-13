@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="theme-color" content="#1d3461">
-<title>Lesson 4: Letter family Ra Ze Dal Zel</title>
+<title>Lesson 4: Tricky pairs</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri&family=Noto+Naskh+Arabic:wght@400;700&display=swap');
   @font-face { font-family:'KFGQPC Hafs'; src:url('fonts/KFGQPC_Hafs_v18.woff2') format('woff2'), url('fonts/KFGQPC_Hafs_v18.ttf') format('truetype'); }
@@ -101,13 +101,22 @@
   .names th { text-align:left; background:#eef3fb; color:#1d3461; padding:8px; border-bottom:2px solid #1d3461; font-size:11px; text-transform:uppercase; }
   .names td { padding:8px; border-bottom:1px solid #eef1f7; }
   .names td.ar { direction:rtl; text-align:right; font-size:22px; font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif; }
+  .forms { width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; }
+  .forms th { text-align:center; background:#eef3fb; color:#1d3461; padding:8px; border-bottom:2px solid #1d3461; font-size:11px; text-transform:uppercase; }
+  .forms td { padding:10px 8px; border-bottom:1px solid #eef1f7; text-align:center; vertical-align:middle; }
+  .forms td.fname { text-align:left; font-weight:700; color:#0f8a7e; }
+  .forms td.ar { direction:rtl; font-size:28px; color:#11203c; font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif; }
+  .nj-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+  .nj { border:1px solid #e6b3aa; border-radius:8px; padding:8px 14px; text-align:center; background:#fdf6f5; min-width:64px; }
+  .nj-ar { font-size:28px; color:#1d3461; direction:rtl; font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif; }
+  .nj-name { font-size:11px; font-weight:700; color:#b3402f; margin-top:2px; }
   .pdf { margin:14px 0; font-size:12.5px; color:#5a6477; }
 
 </style></head><body>
 <header><div class="hwrap">
   <a class="back" href="lessons.html">‹ All lessons</a>
   <div class="lvtag">LESSON 4 OF 24 · FOUNDATION</div>
-  <h1>Letter family Ra Ze Dal Zel</h1>
+  <h1>Tricky pairs</h1>
   <div class="timing">Class cue: 10 min teach · 12 min practice · 3 min close</div>
 </div></header>
 <div class="wrap">
@@ -115,13 +124,13 @@
     <button type="button" class="ghost" id="teachBtn">Teach this rule</button>
     <label class="fontpick">Font <select id="fontSel"><option value="kfgqpc_hafs">KFGQPC Hafs</option><option value="kfgqpc_smart">KFGQPC Smart</option><option value="kfgqpc_regular">KFGQPC Regular</option><option value="amiri_quran">Amiri Quran</option><option value="amiri">Amiri</option><option value="noto_naskh">Noto Naskh</option><option value="husrev">Husrev Hatti</option><option value="geeza">Geeza Pro</option></select></label>
   </div>
-  <div class="intro"><p>Today: one letter family.</p><p>Dots tell who is who.</p><p>Success: you can sort the four letters.</p></div>
+  <div class="intro"><p>Today: look-alike letters that sound different.</p><p>We use mouth tips so you remember.</p><p>Success: you can tell the pairs apart.</p></div>
   <div class="teach" id="teachPanel" hidden>
     <div class="teach-h">Teach</div>
-    <p>Dot is the head clue.</p><p>Round pair dips below the line.</p><p>Straight pair sits on the line.</p>
-    <p>Sort cards: ra, ze, dal, zel.</p>
+    <p>Peltek letters: tongue tip between the teeth, like a snake.</p><p>He is a light cold h. Ha is a warm throat h.</p><p>Ayn and gayn live in the throat. Gayn is the gargle.</p><p>Kef is front (key). Kaf is deep back.</p>
+    <p>Drill the character-diagram pairs from the packet.</p>
   </div>
-  <div class="practice-block"><h3 class="block-h">Letter family: Ra, Ze, Dal, Zel</h3><figure class="diag"><img src="assets/diagrams/letter_family.png" alt="Dot = head clue. Round pair dips. Straight pair sits." loading="lazy"><figcaption>Dot = head clue. Round pair dips. Straight pair sits.</figcaption></figure><div class="letter-grid"><div class="lg"><div class="lg-ar" style="font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif">ر</div><div class="lg-name">Raa</div><div class="lg-sound">round, no dot</div></div><div class="lg"><div class="lg-ar" style="font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif">ز</div><div class="lg-name">Zaay</div><div class="lg-sound">round, with dot</div></div><div class="lg"><div class="lg-ar" style="font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif">د</div><div class="lg-name">Daal</div><div class="lg-sound">straight, no dot</div></div><div class="lg"><div class="lg-ar" style="font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif">ذ</div><div class="lg-name">Dhaal</div><div class="lg-sound">straight, with dot</div></div></div></div>
+  <div class="practice-block"><h3 class="block-h">Tricky pairs (your mouth tips)</h3><div class="diag-grid"><figure class="diag"><img src="assets/diagrams/peltek.png" alt="Peltek: tongue tip between teeth (Thaa, Dhaal). Snake method." loading="lazy"><figcaption>Peltek: tongue tip between teeth (Thaa, Dhaal). Snake method.</figcaption></figure><figure class="diag"><img src="assets/diagrams/he_ha.png" alt="He vs Ha: light cold h vs warm throat h." loading="lazy"><figcaption>He vs Ha: light cold h vs warm throat h.</figcaption></figure><figure class="diag"><img src="assets/diagrams/ayn_gayn.png" alt="Ayn / Gayn: throat. Gayn is the gargle." loading="lazy"><figcaption>Ayn / Gayn: throat. Gayn is the gargle.</figcaption></figure><figure class="diag"><img src="assets/diagrams/kefqaf.png" alt="Kef (front key) vs Kaf (deep back)." loading="lazy"><figcaption>Kef (front key) vs Kaf (deep back).</figcaption></figure><figure class="diag"><img src="assets/diagrams/throat.png" alt="Throat letters map." loading="lazy"><figcaption>Throat letters map.</figcaption></figure></div><p class="tip">Say each pair out loud. Feel where the sound lives.</p></div>
   <div class="pdf">Print packet: Abilik Quran Reading FULL (ask Ahmet Hoca if you need the PDF).</div>
   <details class="faq"><summary>FAQ: weird mushaf marks</summary><details class="faq-item"><summary>What if a letter has no mark on it?</summary><div class="faq-a"><p>If there is no fatha, kasra, or damma, and no shadda, it is sukoon.</p><p>Sukoon means that letter has no vowel.</p><p>Read it closed, then go to the next letter.</p><p>Some fonts make the little sukoon circle hard to see. The rule still holds.</p></div></details><details class="faq-item"><summary>What is the little w shape ّ ?</summary><div class="faq-a"><p>That is shadda.</p><p>Say the letter strongly, like it is doubled.</p><p>Often you also hum if it is noon or meem.</p></div></details><details class="faq-item"><summary>What is the weird little mark on things like مٍۢ ?</summary><div class="faq-a"><p>That small high meem mark means iqlab.</p><p>When noon or tanwin comes before ba, turn the N into a soft M sound.</p><p>Hum a little. Do not say a hard N.</p></div></details><details class="faq-item"><summary>What does لا above the line mean?</summary><div class="faq-a"><p>Do not stop here.</p><p>Keep reading through that spot.</p></div></details><details class="faq-item"><summary>What does a small م pause mark mean?</summary><div class="faq-a"><p>You must stop here.</p><p>Finish the word, then pause.</p></div></details><details class="faq-item"><summary>What does ج mean for pausing?</summary><div class="faq-a"><p>You may stop, or you may continue.</p><p>Both are allowed.</p></div></details><details class="faq-item"><summary>Why are some letters gray or silent on this site?</summary><div class="faq-a"><p>Some marks are written but not voiced in that spot.</p><p>Follow the colored reading and the Latin under the word.</p><p>Ask your teacher if a letter still looks confusing.</p></div></details></details>
 </div>
