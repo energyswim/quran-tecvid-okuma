@@ -101,7 +101,8 @@
   .names th { text-align:left; background:#eef3fb; color:#1d3461; padding:8px; border-bottom:2px solid #1d3461; font-size:11px; text-transform:uppercase; }
   .names td { padding:8px; border-bottom:1px solid #eef1f7; }
   .names td.ar { direction:rtl; text-align:right; font-size:22px; font-family:'Amiri Quran','Amiri','Noto Naskh Arabic','Geeza Pro',serif; }
-  .forms { width:100%; border-collapse:collapse; margin-top:8px; font-size:13px; }
+  .forms-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:8px; }
+  .forms { width:100%; min-width:420px; border-collapse:collapse; font-size:13px; }
   .forms th { text-align:center; background:#eef3fb; color:#1d3461; padding:8px; border-bottom:2px solid #1d3461; font-size:11px; text-transform:uppercase; }
   .forms td { padding:10px 8px; border-bottom:1px solid #eef1f7; text-align:center; vertical-align:middle; }
   .forms td.fname { text-align:left; font-weight:700; color:#0f8a7e; }
@@ -122,7 +123,6 @@
 <div class="wrap">
   <div class="bar">
     <button type="button" class="ghost" id="teachBtn">Teach this rule</button>
-    <label class="fontpick">Font <select id="fontSel"><option value="kfgqpc_hafs">KFGQPC Hafs</option><option value="kfgqpc_smart">KFGQPC Smart</option><option value="kfgqpc_regular">KFGQPC Regular</option><option value="amiri_quran">Amiri Quran</option><option value="amiri">Amiri</option><option value="noto_naskh">Noto Naskh</option><option value="husrev">Husrev Hatti</option><option value="geeza">Geeza Pro</option></select></label>
   </div>
   <div class="intro"><p>Today: first half of the alphabet.</p><p>Say each letter out loud.</p><p>Success: you can point and name them.</p></div>
   <div class="teach" id="teachPanel" hidden>
@@ -135,13 +135,6 @@
   <details class="faq"><summary>FAQ: weird mushaf marks</summary><details class="faq-item"><summary>What if a letter has no mark on it?</summary><div class="faq-a"><p>If there is no fatha, kasra, or damma, and no shadda, it is sukoon.</p><p>Sukoon means that letter has no vowel.</p><p>Read it closed, then go to the next letter.</p><p>Some fonts make the little sukoon circle hard to see. The rule still holds.</p></div></details><details class="faq-item"><summary>What is the little w shape ّ ?</summary><div class="faq-a"><p>That is shadda.</p><p>Say the letter strongly, like it is doubled.</p><p>Often you also hum if it is noon or meem.</p></div></details><details class="faq-item"><summary>What is the weird little mark on things like مٍۢ ?</summary><div class="faq-a"><p>That small high meem mark means iqlab.</p><p>When noon or tanwin comes before ba, turn the N into a soft M sound.</p><p>Hum a little. Do not say a hard N.</p></div></details><details class="faq-item"><summary>What does لا above the line mean?</summary><div class="faq-a"><p>Do not stop here.</p><p>Keep reading through that spot.</p></div></details><details class="faq-item"><summary>What does a small م pause mark mean?</summary><div class="faq-a"><p>You must stop here.</p><p>Finish the word, then pause.</p></div></details><details class="faq-item"><summary>What does ج mean for pausing?</summary><div class="faq-a"><p>You may stop, or you may continue.</p><p>Both are allowed.</p></div></details><details class="faq-item"><summary>Why are some letters gray or silent on this site?</summary><div class="faq-a"><p>Some marks are written but not voiced in that spot.</p><p>Follow the colored reading and the Latin under the word.</p><p>Ask your teacher if a letter still looks confusing.</p></div></details></details>
 </div>
 <script>
-const PAGE_FONTS={"kfgqpc_hafs": "'KFGQPC Hafs', 'Geeza Pro', serif", "kfgqpc_smart": "'KFGQPC Smart', 'Geeza Pro', serif", "kfgqpc_regular": "'KFGQPC Regular', 'Geeza Pro', serif", "amiri_quran": "'Amiri Quran', 'Amiri', serif", "amiri": "'Amiri', serif", "noto_naskh": "'Noto Naskh Arabic', serif", "husrev": "'Husrev Hatti', 'Geeza Pro', serif", "geeza": "'Geeza Pro', serif"};
-function applyFont(id){
-  const fam=(PAGE_FONTS[id]||PAGE_FONTS.kfgqpc_hafs);
-  document.documentElement.style.setProperty('--ar-font', fam);
-  localStorage.setItem('ar_font', id);
-  const sel=document.getElementById('fontSel'); if(sel) sel.value=id;
-}
 function applyTeach(on){
   const panel=document.getElementById('teachPanel');
   const btn=document.getElementById('teachBtn');
@@ -149,9 +142,7 @@ function applyTeach(on){
   if(btn) btn.classList.toggle('on', on);
   localStorage.setItem('taj_teach_open', on?'1':'0');
 }
-applyFont(localStorage.getItem('ar_font')||'kfgqpc_hafs');
 applyTeach(localStorage.getItem('taj_teach_open')==='1');
-var fs=document.getElementById('fontSel'); if(fs) fs.addEventListener('change',()=>applyFont(fs.value));
 var tb=document.getElementById('teachBtn'); if(tb) tb.addEventListener('click',()=>applyTeach(document.getElementById('teachPanel').hidden));
 </script>
 </body></html>
