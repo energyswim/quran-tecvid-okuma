@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="theme-color" content="#1d3461">
+<title>Lesson 1: Alphabet block 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri&family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+  @font-face { font-family:'KFGQPC Hafs'; src:url('fonts/KFGQPC_Hafs_v18.woff2') format('woff2'), url('fonts/KFGQPC_Hafs_v18.ttf') format('truetype'); }
+  @font-face { font-family:'KFGQPC Smart'; src:url('fonts/KFGQPC_Smart_v8.ttf') format('truetype'); }
+  @font-face { font-family:'KFGQPC Regular'; src:url('fonts/KFGQPC_Regular.otf') format('opentype'); }
+  @font-face { font-family:'Husrev Hatti'; src:url('fonts/HusrevHatti-Arapca.ttf') format('truetype'); }
+  * { box-sizing:border-box; }
+  body { font-family:'Helvetica Neue',Arial,sans-serif; margin:0; padding:0 0 70px; background:#f4f6fb; color:#1b2a4a; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 14px; }
+  header { background:linear-gradient(160deg,#1d3461,#26467f); color:#fff; padding:20px 16px 16px; }
+  .hwrap { max-width:900px; margin:0 auto; }
+  .lvtag { font-size:12px; font-weight:800; letter-spacing:1.5px; opacity:.85; }
+  header h1 { margin:3px 0 6px; font-size:22px; }
+  .focus { background:rgba(255,255,255,.13); border-radius:10px; padding:9px 12px; font-size:13px; line-height:1.45; }
+  .focus b { color:#ffe08a; }
+  .back { color:#cfe0ff; text-decoration:none; font-size:12.5px; }
+  .bar { position:sticky; top:0; z-index:9; background:#f4f6fb; display:flex; gap:7px; flex-wrap:wrap; align-items:center; padding:10px 0 8px; border-bottom:1px solid #e2e8f0; }
+  .tog { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; color:#46506a; background:#fff; border:1px solid #d4dcec; padding:6px 10px; border-radius:18px; cursor:pointer; user-select:none; }
+  .tog input { display:none; } .tog .dot { width:13px; height:13px; border-radius:50%; border:2px solid #c0cae0; }
+  .tog.on { color:#1d3461; border-color:#1d3461; background:#eef3ff; }
+  .tog.on .dot { background:#1d3461; border-color:#1d3461; box-shadow:inset 0 0 0 2px #fff; }
+  .prog { font-size:12px; color:#46506a; font-weight:700; margin-left:auto; }
+  .ghost { font:inherit; font-size:12px; font-weight:600; background:#e7ecf7; color:#1d3461; border:0; padding:6px 10px; border-radius:18px; cursor:pointer; }
+  .ghost.on { background:#1d3461; color:#fff; }
+  .fontpick { font-size:12px; font-weight:600; color:#46506a; background:#fff; border:1px solid #d4dcec; padding:5px 8px; border-radius:18px; display:inline-flex; gap:6px; align-items:center; }
+  .fontpick select { font:inherit; font-size:12px; border:0; background:transparent; max-width:130px; }
+  .intro, .teach, .watch { border-radius:10px; padding:10px 13px; font-size:13px; line-height:1.45; margin:12px 0; }
+  .intro { background:#eef7ff; border:1px solid #c5daf5; color:#1d3461; }
+  .intro p, .teach p, .watch p, .faq-a p { margin:0 0 6px; } .intro p:last-child, .teach p:last-child, .watch p:last-child, .faq-a p:last-child { margin:0; }
+  .teach { background:#f3eefc; border:1px solid #d5c6f0; color:#3b2f63; }
+  .teach-h { font-weight:800; color:#1d3461; margin-bottom:6px; }
+  .watch { background:#fff3cd; border:1px solid #f0d886; color:#6b5512; }
+  .watch b { color:#8a5a00; }
+  details.legend, details.faq { margin:12px 0; background:#fff; border:1px solid #dce2ee; border-radius:10px; padding:2px 14px 8px; }
+  details.legend summary, details.faq summary, details.faq-item summary { cursor:pointer; font-weight:700; color:#1d3461; padding:9px 0; list-style:none; }
+  details.legend summary::-webkit-details-marker, details.faq summary::-webkit-details-marker, details.faq-item summary::-webkit-details-marker { display:none; }
+  details.legend summary::before, details.faq summary::before, details.faq-item summary::before { content:"▸ "; color:#0f8a7e; }
+  details.legend[open] summary::before, details.faq[open] summary::before, details.faq-item[open] summary::before { content:"▾ "; }
+  .faq-item { border-top:1px solid #eef1f7; }
+  .faq-a { color:#5a6477; font-size:12.5px; padding:0 0 8px 8px; }
+  .lrow { display:flex; gap:10px; padding:7px 2px; border-top:1px solid #eef1f7; font-size:12.5px; }
+  .sw { width:15px; height:15px; border-radius:4px; flex:0 0 15px; margin-top:2px; } .lname { font-weight:700; } .ldef { color:#5a6477; }
+  .card { background:#fff; border:1px solid #e4e9f3; border-radius:14px; padding:13px 14px; margin:12px 0; }
+  .cardh { margin:0 0 10px; font-size:17px; color:#1d3461; }
+  .cnt { font-size:11.5px; font-weight:600; color:#8b95ab; }
+  .ayah { display:flex; gap:9px; align-items:flex-start; border-top:1px solid #f0f3f9; padding:11px 0 4px; }
+  .ayah:first-of-type { border-top:0; }
+  .ayah.read { background:#f3fbf5; } .ayah.solved { background:#eefcf3; }
+  .chk input { width:19px; height:19px; cursor:pointer; accent-color:#16a34a; margin-top:5px; }
+  .body { flex:1; min-width:0; }
+  .topline { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .anum { display:inline-block; height:22px; line-height:22px; background:#1d3461; color:#fff; font-size:12px; font-weight:700; border-radius:6px; padding:0 8px; }
+  .words { display:flex; flex-wrap:wrap; direction:rtl; gap:6px 5px; }
+  .w { display:flex; flex-direction:column; align-items:center; background:#f7f9fd; border:1px solid #eef1f8; border-radius:9px; padding:6px 9px 5px; }
+  .wa { font-family:var(--ar-font,'KFGQPC Hafs','Geeza Pro',serif); font-size:28px; line-height:1.5; color:#11203c; }
+  .wa-p { display:none; }
+  body.colors-off .wa-c { display:none; } body.colors-off .wa-p { display:inline; }
+  .wl { direction:ltr; font-size:12.5px; font-style:normal; color:#0f8a7e; margin-top:1px; white-space:nowrap; transform:scaleX(-1); }
+  body.latin-off .wl { display:none; }
+  .prayer-tr { font-size:16px; line-height:1.6; color:#11203c; font-weight:600; font-style:normal; transform:scaleX(-1); display:inline-block; width:100%; }
+  body.latin-off .prayer-tr { opacity:.35; }
+  .prayer-mean { font-size:13px; color:#5a6477; font-style:italic; margin-top:7px; }
+  .cmode { display:inline-flex; gap:4px; align-items:center; }
+  body.focus-colors .wa-c [data-fam]:not([data-keep]) { color:#11203c !important; }
+  .timing { font-size:12px; color:#5a6477; margin:8px 0 0; }
+
+  .practice { background:#eefcf3; border:1px solid #b7e4c7; border-radius:10px; padding:10px 13px; margin:12px 0; font-size:13px; }
+  .pdf { margin:14px 0; font-size:13px; }
+  .pdf a { color:#1d3461; font-weight:700; }
+</style></head><body>
+<header><div class="hwrap">
+  <a class="back" href="lessons.html">‹ All lessons</a>
+  <div class="lvtag">LESSON 1 OF 24 · FOUNDATION</div>
+  <h1>Alphabet block 1</h1>
+  <div class="timing">Class cue: 10 min teach · 12 min practice · 3 min close</div>
+</div></header>
+<div class="wrap">
+  <div class="bar">
+    <label class="fontpick">Font <select id="fontSel"><option value="kfgqpc_hafs">KFGQPC Hafs</option><option value="kfgqpc_smart">KFGQPC Smart</option><option value="kfgqpc_regular">KFGQPC Regular</option><option value="amiri_quran">Amiri Quran</option><option value="amiri">Amiri</option><option value="noto_naskh">Noto Naskh</option><option value="husrev">Husrev Hatti</option><option value="geeza">Geeza Pro</option></select></label>
+  </div>
+  <div class="intro"><p>Today: first half of the alphabet.</p><p>Say each letter out loud.</p><p>Success: you can point and name them.</p></div>
+  <div class="teach" id="teachPanel">
+    <div class="teach-h">Teach</div>
+    <p>We learn letters in small groups.</p><p>Say the name, then the sound.</p><p>Do not rush. One letter at a time.</p>
+  </div>
+  <div class="practice"><b>Practice</b><p>Chorally recite alif through zay from the packet pages.</p></div>
+  <div class="pdf">Packet pages: use <b>Abilik Quran Reading FULL</b> (alphabet, diagrams, drills). Ask Ahmet Hoca for the PDF if you do not have it.</div>
+  <details class="faq"><summary>FAQ: weird mushaf marks</summary><details class="faq-item"><summary>What if a letter has no mark on it?</summary><div class="faq-a"><p>If there is no fatha, kasra, or damma, and no shadda, it is sukoon.</p><p>Sukoon means that letter has no vowel.</p><p>Read it closed, then go to the next letter.</p><p>Some fonts make the little sukoon circle hard to see. The rule still holds.</p></div></details><details class="faq-item"><summary>What is the little w shape ّ ?</summary><div class="faq-a"><p>That is shadda.</p><p>Say the letter strongly, like it is doubled.</p><p>Often you also hum if it is noon or meem.</p></div></details><details class="faq-item"><summary>What is the weird little mark on things like مٍۢ ?</summary><div class="faq-a"><p>That small high meem mark means iqlab.</p><p>When noon or tanwin comes before ba, turn the N into a soft M sound.</p><p>Hum a little. Do not say a hard N.</p></div></details><details class="faq-item"><summary>What does لا above the line mean?</summary><div class="faq-a"><p>Do not stop here.</p><p>Keep reading through that spot.</p></div></details><details class="faq-item"><summary>What does a small م pause mark mean?</summary><div class="faq-a"><p>You must stop here.</p><p>Finish the word, then pause.</p></div></details><details class="faq-item"><summary>What does ج mean for pausing?</summary><div class="faq-a"><p>You may stop, or you may continue.</p><p>Both are allowed.</p></div></details><details class="faq-item"><summary>Why are some letters gray or silent on this site?</summary><div class="faq-a"><p>Some marks are written but not voiced in that spot.</p><p>Follow the colored reading and the Latin under the word.</p><p>Ask your teacher if a letter still looks confusing.</p></div></details></details>
+</div>
+<script>
+const PAGE_FONTS={"kfgqpc_hafs": "'KFGQPC Hafs', 'Geeza Pro', serif", "kfgqpc_smart": "'KFGQPC Smart', 'Geeza Pro', serif", "kfgqpc_regular": "'KFGQPC Regular', 'Geeza Pro', serif", "amiri_quran": "'Amiri Quran', 'Amiri', serif", "amiri": "'Amiri', serif", "noto_naskh": "'Noto Naskh Arabic', serif", "husrev": "'Husrev Hatti', 'Geeza Pro', serif", "geeza": "'Geeza Pro', serif"};
+function applyFont(id){
+  const fam=(PAGE_FONTS[id]||PAGE_FONTS.kfgqpc_hafs);
+  document.documentElement.style.setProperty('--ar-font', fam);
+  localStorage.setItem('ar_font', id);
+  const sel=document.getElementById('fontSel'); if(sel) sel.value=id;
+}
+applyFont(localStorage.getItem('ar_font')||'kfgqpc_hafs');
+var fs=document.getElementById('fontSel'); if(fs) fs.addEventListener('change',()=>applyFont(fs.value));
+</script>
+</body></html>
